@@ -1,0 +1,617 @@
+<!doctype html>
+<html amp lang="en">
+  <head>
+    <meta charset="utf-8">
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
+    <script async custom-element="amp-mega-menu" src="https://cdn.ampproject.org/v0/amp-mega-menu-0.1.js"></script>
+    <script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
+    <script async custom-element="amp-list" src="https://cdn.ampproject.org/v0/amp-list-0.1.js"></script>
+    <script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.2.js"></script>
+    <script async custom-element="amp-accordion" src="https://cdn.ampproject.org/v0/amp-accordion-0.1.js"></script>
+    <script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
+    <title>Med-I</title>
+    <link rel="canonical" href="https://amp.dev/documentation/guides-and-tutorials/start/create/basic_markup/">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style amp-custom>
+      html {
+        scroll-behavior: smooth;
+      }
+      header {
+        background: #fff;
+        box-shadow: 0px 1px 4px grey;
+      }
+       body {
+        /* background-color: #7be9fb; */
+        /* https://pixabay.com/photos/mri-magnetic-resonance-imaging-2813912/ */
+        /* background-image: url(./images/bkgd_img.jpg);
+        background-size: cover; */
+        margin-left: 10%;
+        margin-right: 10%;
+        font-family: sans-serif;
+        font-size: larger;
+      }
+
+      h1 {
+        color: #0079ad;
+      }
+
+      .parallax1 {
+        /* https://pixabay.com/photos/mri-magnetic-resonance-imaging-2813912/ */
+        background-image: url(./images/bkgd_img.jpg);
+        /* Full height */
+        min-height: 450px; 
+      }
+
+      .parallax2 {
+        /* https://pixabay.com/illustrations/computer-tomography-ct-radiography-62942/ */
+        background-image: url(./images/bkgd2.jpg);
+        min-height: 450px; 
+      }
+
+
+      .parallax3 {
+        /* https://pixabay.com/illustrations/computer-tomography-ct-radiography-62942/ */
+        background-image: url(./images/bkgd3.jpg);
+        min-height: 450px; 
+      }
+
+      .parallax1, .parallax2, .parallax3{
+        /* The image used */
+        /* background-image: url(./images/bkgd_img.jpg); */
+        background-size: cover;
+
+        /* Create the parallax scrolling effect */
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+
+      form.amp-form-submit-success > input {
+        display: none
+      }
+
+      .container {
+        /* https://www.magicpattern.design/tools/css-backgrounds */
+        background-color: #ffffff;
+        opacity: 1;
+        background-image:  radial-gradient(#00aee5 0.8px, transparent 0.8px), radial-gradient(#00aee5 0.8px, #ffffff 0.8px);
+        background-size: 20px 20px;
+        background-position: 0 0,10px 10px;
+        box-shadow: 5px, 5px;
+        padding-bottom: 30px;
+      }
+
+      .sidebar {
+        padding: 10px;
+        margin: 0;
+      }
+      .sidebar > li {
+        list-style: none;
+        margin-bottom:10px;
+      }
+      .sidebar a {
+        text-decoration: none;
+      }
+      .close-sidebar {
+        font-size: 1.5em;
+        padding-left: 5px;
+      }
+      .body-container {
+        margin-left: 20px;
+      }
+      .sidebar-open-btn {
+      font-size: 2em;
+      display: none;
+    }
+    .sidebar-open-btn {
+      display: none;
+    }
+    #mega-menu-list {
+        padding-left: 2pc;
+        padding-right: 2pc;
+        padding-top: 5px;
+        display: flex;
+        justify-content: space-between;
+        background-color: #7beafb00;
+        
+    }
+    #mega-menu {
+      margin-left: 1pc;
+      margin-right: 1pc;
+      margin-top: 1pc;
+    }
+    amp-mega-menu nav {
+      background-color: rgba(211, 211, 211, 0);
+    }
+    amp-mega-menu .menu-item[open] > span, amp-mega-menu .menu-item[open] > a {
+      background-color: rgba(216, 213, 213, 0.507);
+    }
+
+    amp-mega-menu .menu-item > span, amp-mega-menu .menu-item > a {
+      border-radius: 5px;
+      padding-left: 5px;
+      padding-right: 5px;
+      padding-top: 5px;
+      width: 10pc;
+    }
+
+    amp-mega-menu .menu-item[open] > div {
+      left: 10px;
+      right: 10px;
+      width: auto;
+      background: #fffc;
+      border-radius: 5px;
+    }
+
+    fieldset {
+      display: grid;
+      grid-template-columns: max-content max-content;
+      grid-gap: 5px;
+      background: white;
+      border-radius: 5px;
+    }
+
+    fieldset > label {
+      text-align: right;
+    }
+
+    fieldset label > input{
+      border-radius: 5px;
+    }
+
+    /* amp-mega-menu .menu-item:hover > a {
+      background: #fff5;
+    } */
+
+    amp-mega-menu .menu-item:hover > span , amp-mega-menu .menu-item:hover > a{
+      background: #fff5;
+    }
+
+    header > [aria-hidden=true] {
+      background: #0002;
+    }
+
+    .headerbar {
+      top: 0;
+      position: fixed;
+      width: 100%;
+    }
+    @media (max-width: 500px) {
+      #mega-menu {
+        display: none;
+      }
+      .sidebar-open-btn {
+        padding-left: 10px;
+        display: block;
+        background: #00000000;
+        border: #00000000;
+      }
+      body{
+        background-image: url(./images/bkgd_img_portrait.jpg);
+        background-size: cover;
+      }
+    }
+    </style>
+  <link rel="icon" type="image/png" href="images/med-i-logo.png">
+  </head>
+  <body>
+    <div class="parallax1"></div>
+    <!-- <amp-state id="test_contect" src="./website_content.json"></amp-state> -->
+    <amp-state id="website_content">
+      <script type="application/json">
+        {
+          "test": "test",
+          "home": [{
+              "img_src": "./images/med-i-logo.png", "title":"Med-I", 
+              "about_text":"Med-I is an Enterprise Ireland (EI) funded project that aims to facilitate and accelerate AI medical imaging research in Ireland. To achieve this aim, Med-I will develop an open and secure platform to share data and ultimately provide trustworthy tools to radiologists to enhance patient care."
+            }],
+          "navbar": [{"values" : [{"title": "Home", "id": "home"}, {"title": "About", "id": "about"}]}],
+          "consortium": [
+            {
+              "img": "./images/ibm-logo.png", "width": "50", "height": "25",
+              "desc": "IBM – Working in partnership with Watson Health Imaging, the IBM innovation exchange brings the knowledge and expertise in hybrid cloud technology and medical imaging to design and develop the Med-I platform and AI Imaging components."
+              },
+              {
+                "img": "./images/ucd-logo.jpeg", "width": "26", "height": "38",
+                "desc": "UCD - Working on functional and non-functional technology aspects of the Med-I project to deliver technical capabilities in medical imaging via designing and developing the Med-I platform and AI Imaging components."
+              },
+              {
+                "img": "./images/dkit-logo.png", "width": "40", "height": "22",
+                "desc": "The Regulated Software Research Centre (RSRC), based in DKIT, is recognised globally as a centre of excellence for medical device software engineering. DKIT defines requirements and Standard Operating Procedures (SOP) to ensure that the Med-I platform will be developed in accordance with medical device regulatory requirements. Additionally, DKIT will audit the software development, integration and validation processes against the defined regulatory compliant SOP."
+              },
+              {
+                "desc": "Nova Leah will perform an end-to-end cybersecurity risk assessment of the Med-I platform in line with state-of-the-art best practices and regulatory expectations. During the development of the platform, Nova Leah will continuously monitor for threats and vulnerabilities which may have potential to compromise the system, users or patients. This monitoring will be performed by Nova Leah’s technology, SelectEvidence® which automates cybersecurity risk assessments specifically for connected medical devices. All threats and vulnerabilities will be evaluated and based upon this; Nova Leah will identify adequate security requirements to mitigate any associated risk. Nova Leah will also produce all required cybersecurity risk management regulatory documentation.",
+                "img": "./images/novaleah-logo.png", "width": 100, "height": "40"
+              },
+              {
+                "desc": "Davra - Is one of the most advanced IoT platforms on the market, with military level security and unrivalled integration capabilities. The Med-I platform will be built on top of the Davra IoT platform, which will be analysing all the data and offering the radiologists information on their patient to improve patient care.",
+                "img": "./images/davra-logo.jpeg", "width": 30, "height": 8 
+              }
+            ],
+            "funding": [
+              {"img": "./images/ei_logo.png", "img_width": "90", "img_height": "40", "funding_text": "This project has received funding from the Disruptive Technologies Innovation Fund under the Research & Development Revenue Grant"}
+            ],
+            "faq": [
+              {"q": "What does Med-I stand for ?", "a": "Medical Imaging Ireland"}
+            ],
+            "platform": [
+              {"desc": "The Med-I project will design and develop a platform which will aim to facilitate the development and uptake of AI in medical imaging by addressing all regulatory, security and privacy challenges, providing a trustworthy space for medical images to be shared, annotated and used, and for clinicians to get access to state of the art AI solutions and provide feedback to developers."}
+            ],
+            "users": [
+              {
+                "name": "AI Researchers & Developers", "id": "researchers",
+                "desc": "AI research into medical imaging is impaired by a lack of access to quality labelled and annotated datasets to train models. Once models are developed there is a lack of a clear path to get these tools into the hands of clinicians and get real feedback. Therefore, a centralised and secure resource platform with access to high-quality medical image datasets for AI explorations in academic communities is required. The Med-I platform provides the tools and structures needed to get anonymised data annotated by professionals and into the hands of researchers. It then provides a fast path to deploy the models in clinical settings and get invaluable feedback.",
+                "icon": "./images/ai_developers_icon.svg", "icon_width": 40, "icon_height": 40
+              },
+              {
+                "name": "Hospitals & Data Providers", "id": "data_providers",
+                "desc": "Hospitals and other medical imaging data providers have large stores of valuable patient data which, in the right hands can provide real value to future care. However, this data comes with  significant legal, privacy and ethical responsibilities to patients. Data providers need tools and methods to simplify the process of responsibly sharing data with AI researchers. The Med-I platform enables data providers to share their patients data in a secure and privacy preserving way.",
+                "icon": "./images/hospitals_icon.svg", "icon_width": 40, "icon_height": 40
+              },
+              {
+                "name": "Radiologists & Clinicians", "id": "clinicians",
+                "desc": "Radiologists and other clinicians are dealing with ever increasing workloads and dwindling numbers. Advanced AI tools are needed to maintain and improve the quality of care to patients in Ireland, However, clinicians must be able to trust the tools they use, as well as deal with the significant regulatory workload of getting a new tool deployed. Med-I aims to develop a methodology that will deliver trustworthy and explainable tools to help radiologists save time and provide improved levels of care to their patients, while complying with all privacy and security regulations",
+                "icon": "./images/clinicians_icon.svg", "icon_width": 40, "icon_height": 40
+              },
+              {
+                "name": "Application Developers", "id": "developers",
+                "desc": "Application developers want to develop applications that fit seamlessly into clinicians work flows and deliver State of the art AI capabilities. Presently, the path way from research to user friendly application is not clear. The Med-I platform makes State of the art models available for application developers and enables these applications to get into the hands of clinicians early and often.",
+                "icon": "./images/developers_icon.svg", "icon_width": 40, "icon_height": 40
+              }
+            ],
+            "usecases": [
+              {
+                "title": "Automatic Detection & Quantification of calcification of the carotid artery", "id": "calcification",
+                "abstract": "Computed Tomography (CT) of the cervical spine (c-spine) is a scan used to assess for any serious neck injuries. In these CT scans the neck and top of the spine are the main concern and focus of the examination. The carotid arteries, which are vessels that carry blood to the brain, are also included in the CT scan images, but they are not usually examined in detail. These vessels may sometimes develop some calcifications in them, which may indicate to a radiologist that the patient is potentially at risk of cardiovascular events (e.g.,Stroke and transient ischaemic attack). A large number of patients who undergo c-spine CT scans are older individuals who may have fallen from a low height, some of whom may be at risk of cardiovascular events. Figure 1 shows an example imagining data.",
+                "img": "./images/usecase1_img.png", "img_height":200, "img_width": 600,
+                "desc": [
+                  {"p": "We plan on using neck CT scans that have been performed in the Mater and working with computer scientists within UCD and IBM to create a computer model to automatically identify calcifications in the carotid arteries. By highlighting these calcifications to the radiologist this may lead to early diagnosis and medical treatment for the patient and, subsequently, lower their risk of cardiovascular events"},
+                  {"p": "The carotid arteries are also included on other types of CT studies (e.g,performed for cancer imaging, for angiography etc). Calcifications of vessels are also often visible on these studies. It would be advantageous to accurately assess the extent of carotid calcification on all CTs that cover the neck."},
+                  {"p": "If successful, our algorithms developed on non-contrast studies may be applied to post-contrast neck CT. All the imaging studies that we will use will have been completely and irreversibly anonymised to ensure that there is no possibility of anybody being able to identify to whom the original study belonged."},
+                  {"p": "Patients with carotid artery calcifications have a higher rate of cardiovascular risk factors compared with those without such calcifications. These patients appear to have an increased risk of vascular events (e.g., stroke, myocardial infarction) and, therefore, should visit healthcare units for further investigation for any cardiovascular-associated risks that they may have. For this patient group, early diagnosis and intervention may reduce their risks of having future events."}
+                ],
+                "objectives": [
+                  {"o": "Develop a computer model for the automatic detection of calcification within the carotid arteries assessed in non-contrast cervical-spine CT studies using a training set of completely and irreversibly anonymised studies previously performed within the Mater."},
+                  {"o": "Building on the prior, we then aim to develop an algorithm for quantifying the extent of the calcification in the arteries within the c-spine CT scans using a training set of positive studies."},
+                  {"o": "Using a larger previously unseen cervical-spine CT dataset we then aim to test the accuracy of the computer model for automatic identification and quantification of extent of calcification."},
+                  {"o": "The model developed on non-contrast studies will be applied to post-contrast neck CT to assess applicability to this imaging technique."}
+                ]
+              }
+            ],
+            "early-adopter": {
+              "title": "What's the Med-I early adopter program",
+              "desc": [
+                {"p": "The Med-I Early adopter program is an opportunity for clinicians, SMEs, Data providers and Researchers to get early access and use of the Med-I platform and components while still in development."},
+                {"p": "These key stakeholders are invited to join workshops, engage in discussions and given early demos of components  under development, providing the opportunity to guide and direct the progress of Med-I."},
+                {"p": "SME and other business application providers get the chance to shape and integrate with the platform, getting early access to the AI models developed in the project and the chance to deploy their applications into the platform."}
+              ],
+              "benefits": "What's the benefit of joining",
+              "benefits-bullets": [
+                {"b": "Early, exclusive access to platform features when available."},
+                {"b": "Direct and shape the program by providing input at discussions, workshops and demos."},
+                {"b": "First mover advantage integrating with the platform."},
+                {"b": "Join a community of AI in medical imaging stakeholders."}
+              ]
+            }
+        }
+      </script>
+    </amp-state>
+    <header class="headerbar">
+      <amp-mega-menu id="mega-menu" height="50" layout="fixed-height">
+        <nav>
+          <ul id=mega-menu-list>
+            <li class="menu-item">
+              <a href="#about">
+                Home
+              </a>
+            </li>
+            <li class="menu-item">
+              <span role="button">About</span>
+              <div role="dialog">
+                <ul>
+                  <li><a href="#about">About Medical Imaging</a></li>
+                  <li><a href="#consortium">Consortium</a></li>
+                  <li><a href="#funding">Funding</a></li>
+                  <li><a href="#faq">FAQ</a></li>
+                </ul>
+              </div>      
+            </li>
+            <li class="menu-item">
+              <span role="button">Platform</span>
+              <div role="dialog">
+                <ul>
+                  <li><a href="#platform">Med-I Platform</a></li>
+                  <li>
+                    <span role="button"><a href="#users">Users</a></span>
+                    <div role="dialog">
+                      <ul>
+                        <li><a href="#researchers">AI Researchers & Developers</a></li>
+                        <li><a href="#data_providers">Hospitals & Data Providers</a></li>
+                        <li><a href="#clinicians">Radiologists & Clinicians</a></li>
+                        <li><a href="#developers">Application Developers</a></li>
+                      </ul>
+                    </div>  
+                  </li>
+                  <li><a href="#early-adopter">Early Adopter Program</a></li>
+                </ul>
+              </div>  
+            </li>
+            <li class="menu-item">
+              <span role="button">Use Cases</span>
+              <div role="dialog">
+                <ul>
+                  <li><a href="#calcification">Detection of Calcification of the carotid artery</a></li>
+                </ul>
+              </div>      
+            </li>
+            <li class="menu-item">
+              <span role="button">Dissemination</span>
+              <div role="dialog">
+                <ul>
+                  <li>Publications</li>
+                  <li>Videos</li>
+                </ul>
+              </div>      
+            </li>
+            <li class="menu-item">
+              <span role="button">News / Blog</span>
+              <div role="dialog">
+                <ul>
+                  <li>Latest News</li>
+                  <li>Upcoming Events</li>
+                  <li>Blog</li>
+                </ul>
+              </div>      
+            </li>
+            <li class="menu-item">
+              <a href="#contact">Contact</a>
+            </li>
+          </ul>
+        </nav>
+      </amp-mega-menu>
+      <!-- <amp-layout class="sidebar-open-btn-layout" height="100px"> -->
+        <button class="sidebar-open-btn" on="tap:sidebar.toggle">☰</button>
+      <!-- </amp-layout> -->
+    </header>
+    <amp-sidebar id="sidebar" layout="nodisplay" side="left">
+      <amp-accordion>
+        <section>
+          <h4>menu item</h4>
+          <div>more content</div>
+        </section>
+      </amp-accordion>
+    </amp-sidebar>
+    <amp-list class="container" src="amp-state:website_content" items="home" height="200px" layout="fixed-height" style="align-items: center;">
+      <template type="amp-mustache">
+        <div class="body-container" style="margin:auto; width: 80%; padding-top: 10px;">
+          <div>
+            <amp-img src="{{img_src}}" height="50" width="50"></amp-img>
+            <h1 id="about" style="display: inline;">
+              {{title}}
+            </h1>
+          </div>
+            <p>{{about_text}}</p>
+        </div>
+      </template>
+    </amp-list>
+    <div class="parallax1"></div>
+    <div class="container">
+      <h1 id="consortium" style="padding-left: 10%;">
+      Consortium
+    </h1>
+    <amp-list src="amp-state:website_content" items="consortium" height="900px" layout="fixed-height" style="align-items: center;">
+      <template type="amp-mustache">
+        <div class="body-container" style="margin:auto; width: 80%; padding-top: 10px;">
+          <div>
+            <amp-img src="{{img}}" height="{{height}}" width="{{width}}"></amp-img>
+          </div>
+            <p>{{desc}}</p>
+        </div>
+      </template>
+    </amp-list>
+  </div>
+    <div class="parallax1"></div>
+    <div class="container">
+      <h1 id="funding" style="padding-left: 10%;">
+      Funding
+    </h1>
+    <amp-list src="amp-state:website_content" items="funding" height="100px" layout="fixed-height" style="align-items: center;">
+      <template type="amp-mustache">
+        <div class="body-container" style="margin:auto; width: 80%; padding-top: 10px;">
+          <div>
+            <amp-img src="{{img}}" height="{{img_height}}" width="{{img_width}}" style="float:left"></amp-img>
+            <div style="float: right; max-width: 70%;">{{funding_text}}</div>
+          </div>
+        </div>
+      </template>
+    </amp-list>
+  </div>
+  <div class="parallax2"></div>
+  <div class="container">
+    <h1 id="faq" style="padding-left: 10%;">
+    Frequently Asked Questions
+  </h1>
+  <amp-list src="amp-state:website_content" items="faq" height="200px" layout="fixed-height" style="align-items: center;">
+    <template type="amp-mustache">
+      <div class="body-container" style="margin:auto; width: 80%; padding-top: 10px;">
+        <div>
+          <h4>Q. {{q}}</h4>
+          <p>Answer: {{a}}</p>
+        </div>
+      </div>
+    </template>
+  </amp-list>
+  </div>
+  <div class="parallax2"></div>
+  <div class="container">
+    <h1 id="platform" style="padding-left: 10%;">
+    The Med-I Platform
+    </h1>
+    <amp-list src="amp-state:website_content" items="platform" height="550px" layout="fixed-height" style="align-items: center;">
+      <template type="amp-mustache">
+        <div class="body-container" style="margin:auto; width: 80%; padding-top: 10px;">
+          <div style="max-width: 80%;">
+            <p>{{desc}}</p>
+            <amp-img src="images/medi-platform-diagram.png" layout="responsive" height="400" width="650" style="margin:auto; display: block;"></amp-img>
+          </div>
+        </div>
+      </template>
+    </amp-list>
+  </div>
+  <div class="parallax3"></div>
+  <div class="container">
+    <h1 id="users" style="padding-left: 10%;">
+    Platform Users
+    </h1>
+    <amp-list src="amp-state:website_content" items="users" height="450px" layout="fixed-height" style="align-items: center;">
+      <template type="amp-mustache">
+        <div class="body-container" style="margin:auto; width: 80%; padding-top: 10px;">
+          <h4 id={{id}} style="display: block;">{{name}}</h4>
+          <div style="max-width: 80%;">
+            <amp-img src="{{icon}}" height="{{icon_height}}" width="{{icon_width}}" style="float: left;"></amp-img>
+            <span style="float: right; max-width: 90%; padding-bottom: 10px;">{{desc}}</span>
+          </div>
+        </div>
+      </template>
+    </amp-list>
+  </div>
+  <div class="parallax3"></div>
+  <div class="container">
+    <h1 id="early-adopter" style="padding-left: 10%;">
+    The Med-I Early Adopter Program
+    </h1>
+    <amp-list src="amp-state:website_content" items="early-adopter" height="1050px" layout="fixed-height" style="align-items: center;" single-item>
+      <template type="amp-mustache">
+        <div class="body-container" style="margin:auto; width: 80%; padding-top: 10px;">
+          <div style="max-width: 80%;">
+            <h3>{{title}}</h3>
+{{#desc}}            
+            <p>{{p}}</p>
+{{/desc}}
+            <h3>{{benefits}}</h3>
+            <ul>
+{{#benefits-bullets}}
+              <li>{{b}}</li>
+{{/benefits-bullets}}
+            </ul>
+            <h3 role="button" id="signupbutton" on="tap:signup.show, signupbutton.hide">Sign Up</h3>
+            <div id="signup" hidden>
+              <form method="post"
+                enctype=application/x-www-form-urlencoded
+                action-xhr="https://eu-de.functions.appdomain.cloud/api/v1/web/7ddc2f32-92af-43f8-a58b-5499db4ba71a/MediEarlyAdopter/MediEarlyAdopterSignUp"
+                target="_top"
+                custom-validation-reporting="as-you-go"
+              >
+              <fieldset style="grid-template-columns: 60% 40%">
+                <span>Name:</span>
+                <input type="text" name="name" required>
+                <span>Email:</span>
+                <input type="email" name="email" required>
+                <span>Position / Job Title:</span>
+                <input type="text" name="position">
+                <span>Company / Organization</span>
+                <input type="text" name="org">
+                <span>What interests you in Med-I ?</span>
+                <br>
+                <textarea style="border-radius: 5px; grid-column: 1 / span 2;" name="interests" rows=4 cols=50></textarea>
+                <span style="font-size: x-small; text-align: left; grid-column: 1 / span 2;">
+                  Personal Data Protection - Data Controller: Med-I consortium.
+                  Purposes of processing: to answer your message and add you to our contact list to send you information about Med-I newsletter, webinars and project events.
+                  Legal Basis: subject consent.
+                  Recipients / Personal data transfers: No data transfer foreseen.
+                  Storage period: Up to five years after the end of the project.
+                  Exercise of rights: email to medi@ibm.com.
+                  More information: <a href="/#privacy">Privacy Policy</a>
+                </span>
+                <br>
+                <span style="grid-column: 1;">I have read and agree on the terms of use and data <a href="/#privacy">privacy policy</a></span>
+                <input type="checkbox" name="consent" required>
+                <input style="grid-column: 1 / span 2;" type="submit" value="Join">
+              </fieldset>
+              <div submit-success>
+                <template type="amp-mustache">
+                  Submitted successfully!
+                  We have sent you a verification email, please check your inbox and spam folder and verify your email to complete sign up.
+                </template>
+              </div>
+              <div submit-error>
+                <template type="amp-mustache">
+                  Submission failed!
+                  {{error}}
+                </template>
+              </div>
+            </form>
+            </div>
+          </div>
+        </div>
+      </template>
+    </amp-list>
+  </div>
+  <div class="parallax3"></div>
+  <div class="container">
+    <h1 id="usecases" style="padding-left: 10%;">
+    Usecases
+    </h1>
+    <amp-list src="amp-state:website_content" items="usecases" height="650px" layout="fixed-height" style="align-items: center;">
+      <template type="amp-mustache">
+        <div class="body-container" style="margin:auto; width: 80%; padding-top: 10px;">
+          <h4 id={{id}} style="display: block;">{{title}}</h4>
+          <p>{{abstract}}</p>
+          <amp-img src="{{img}}" height="{{img_height}}" width="{{img_width}}"></amp-img>
+{{#desc}}
+          <p>
+            {{p}}
+          </p>
+{{/desc}}
+          <h5>Objectives</h5>
+          <ul style="padding-bottom: 10px;">
+{{#objectives}}
+            <li>{{o}}</li>
+{{/objectives}}
+          </ul>
+        </div>
+      </template>
+    </amp-list>
+  </div>
+  <div class="parallax1"></div>
+  <div class="container">
+    <h1 id="dissemination" style="padding-left: 10%;">
+    Dissemination
+    </h1>
+  </div>
+  <div class="parallax3"></div>
+  <div class="container">
+    <h1 id="news" style="padding-left: 10%;">
+    News
+    </h1>
+  </div>
+  <div class="parallax3"></div>
+  <div class="container">
+    <h1 id="contact" style="padding-left: 10%;">
+    Contact
+    </h1>
+    <p style="padding-left: 5%; padding-right: 5%;">
+      Get in Touch with any questions and checkout our social media to stay up to date on the project so far.
+    </p>
+    <div style="display: grid; grid-template-columns: 33% 33% 33%; padding: 5%">
+      <div><a href="https://twitter.com/Med_I_Imaging"><i class="fab fa-twitter"></i> - Med_I_Imaging</a></div>
+      <div><a href="https://www.linkedin.com/company/med-i-imaging/about/"><i class="fab fa-linkedin"></i> - med-i-imaging</a></div>
+      <div><a href="mailto: medi@ibm.com"><i class="fas fa-at"></i> - medi@ibm.com</a></div>
+    </div>
+  </div>
+  <div class="parallax1"></div>
+  <footer style="display: grid; grid-template-columns: 50% 50%; justify-items: center;">
+    <span style="color: #303030; font-size: small;">©2022 Med-I</span>
+    <div>
+      <div style="display: inline-block;"><a href="https://twitter.com/Med_I_Imaging"><i class="fab fa-twitter"></i></a></div>
+      <div style="display: inline-block;"><a href="https://www.linkedin.com/company/med-i-imaging/about/"><i class="fab fa-linkedin"></i></a></div>
+      <div style="display: inline-block;"><a href="mailto: medi@ibm.com"><i class="fas fa-at"></i></a></div>
+    </div>
+  </footer>
+  </body>
+</html>
+
